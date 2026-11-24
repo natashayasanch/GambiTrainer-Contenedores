@@ -1,0 +1,304 @@
+/* Estilos de GAMBITRADE, con los colores y fuentes de la guía de estilo
+   Azul marino #0F1F4B · Dorado #C9A227 · Fondo #F5F7FB · Rojo #C0392B */
+
+:root {
+    --marino: #0F1F4B;
+    --dorado: #C9A227;
+    --fondo: #F5F7FB;
+    --borde: #D9DEE8;
+    --cabecera-tabla: #EEF2F8;
+    --rojo: #C0392B;
+    --rojo-texto: #A32D2D;
+    --rojo-fondo: #FDF0EE;
+    --verde: #2E7D4F;
+    --verde-fondo: #EAF5EE;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+    background: var(--fondo);
+    color: var(--marino);
+    margin: 0;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    padding-top: 24px;
+    padding-bottom: 40px;
+}
+
+.contenedor {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1 {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    border-bottom: 2px solid var(--dorado);
+    padding-bottom: 8px;
+    margin-top: 8px;
+}
+
+a {
+    color: var(--marino);
+    text-underline-offset: 3px;
+}
+
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--dorado);
+    outline-offset: 2px;
+}
+
+/* ---------- Cabecera y pie ---------- */
+.cabecera {
+    background: white;
+    color: var(--marino);
+    border-bottom: 3px solid var(--dorado);
+}
+
+.cabecera-interior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.marca {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: var(--marino);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 52px;
+    width: auto;
+}
+
+.navegacion {
+    display: flex;
+    gap: 20px;
+}
+
+.navegacion a {
+    color: var(--marino);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.navegacion a:hover {
+    border-bottom-color: var(--dorado);
+}
+
+.pie {
+    border-top: 1px solid var(--borde);
+    padding: 16px 0;
+    font-size: 0.875rem;
+    color: #5A6785;
+}
+
+/* ---------- Mensajes flash ---------- */
+.mensajes {
+    margin-bottom: 16px;
+}
+
+.alerta {
+    padding: 10px 14px;
+    border-radius: 6px;
+    border-left: 4px solid;
+    margin-bottom: 8px;
+}
+
+.alerta-exito {
+    background: var(--verde-fondo);
+    border-left-color: var(--verde);
+    color: #1E5434;
+}
+
+.alerta-error {
+    background: var(--rojo-fondo);
+    border-left-color: var(--rojo);
+    color: var(--rojo-texto);
+}
+
+/* ---------- Resumen de la cartera ---------- */
+.resumen {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0 24px;
+}
+
+.resumen-etiqueta {
+    font-size: 0.9rem;
+    color: #5A6785;
+}
+
+.resumen-cifra {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 2.25rem;
+}
+
+/* ---------- Tabla ---------- */
+.tabla-contenedor {
+    overflow-x: auto;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: white;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 640px;
+}
+
+th, td {
+    border-bottom: 1px solid var(--borde);
+    padding: 10px 12px;
+    text-align: left;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+th {
+    background: var(--cabecera-tabla);
+    font-weight: 500;
+}
+
+.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.simbolo {
+    color: #5A6785;
+    margin-left: 4px;
+}
+
+.acciones {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.acciones form {
+    margin: 0;
+}
+
+.vacio {
+    color: #5A6785;
+}
+
+/* ---------- Botones ---------- */
+.boton {
+    display: inline-block;
+    background: var(--marino);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.boton:hover {
+    background: #1B3270;
+}
+
+/* Botón rojo para eliminar */
+.eliminar {
+    background: var(--rojo);
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.eliminar:hover {
+    background: #A32D2D;
+}
+
+/* ---------- Formulario ---------- */
+.formulario {
+    max-width: 420px;
+    margin-top: 20px;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+.campo label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #AEB7C9;
+    border-radius: 6px;
+    font: inherit;
+    background: white;
+    color: var(--marino);
+}
+
+.campo input[aria-invalid="true"] {
+    border-color: var(--rojo);
+}
+
+/* Mensajes de error bajo cada campo */
+.error {
+    color: var(--rojo-texto);
+    background: var(--rojo-fondo);
+    border-left: 4px solid var(--rojo);
+    padding: 6px 10px;
+    margin: 6px 0 0;
+    font-size: 0.9rem;
+}
+
+.formulario-acciones {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+@media (max-width: 520px) {
+    .cabecera-interior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

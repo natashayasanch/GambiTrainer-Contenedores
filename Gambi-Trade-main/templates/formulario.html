@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+    <!-- Espera: titulo, accion, valores y errores (todos los datos llegan desde app.py) -->
+    <!-- Si app.py no envía valores o errores, se usa un diccionario vacío -->
+    {% set valores = valores or {} %}
+    {% set errores = errores or {} %}
+
+    <h1>{{ titulo }}</h1>
+
+    <form class="formulario" action="{{ accion }}" method="post" novalidate>
+
+        <div class="campo">
+            <label for="nombre">Nombre del activo</label>
+            <input id="nombre" type="text" name="nombre" value="{{ valores.nombre }}" maxlength="50" required
+                   {% if errores.nombre %}aria-invalid="true"{% endif %}>
+            {% if errores.nombre %}
+                <p class="error">{{ errores.nombre }}</p>
+            {% endif %}
+        </div>
+
+        <div class="campo">
+            <label for="simbolo">Símbolo</label>
+            <input id="simbolo" type="text" name="simbolo" value="{{ valores.simbolo }}" maxlength="10" required
+                   {% if errores.simbolo %}aria-invalid="true"{% endif %}>
+            {% if errores.simbolo %}
+                <p class="error">{{ errores.simbolo }}</p>
+            {% endif %}
+        </div>
+
+        <div class="campo">
+            <label for="cantidad">Cantidad</label>
+            <input id="cantidad" type="text" inputmode="decimal" name="cantidad" value="{{ valores.cantidad }}" required
+                   {% if errores.cantidad %}aria-invalid="true"{% endif %}>
+            {% if errores.cantidad %}
+                <p class="error">{{ errores.cantidad }}</p>
+            {% endif %}
+        </div>
+
+        <div class="campo">
+            <label for="precio">Precio de compra (€)</label>
+            <input id="precio" type="text" inputmode="decimal" name="precio" value="{{ valores.precio }}" required
+                   {% if errores.precio %}aria-invalid="true"{% endif %}>
+            {% if errores.precio %}
+                <p class="error">{{ errores.precio }}</p>
+            {% endif %}
+        </div>
+
+        <div class="formulario-acciones">
+            <input class="boton" type="submit" value="Guardar">
+            <a href="{{ url_for('index') }}">Volver a la cartera</a>
+        </div>
+    </form>
+{% endblock %}

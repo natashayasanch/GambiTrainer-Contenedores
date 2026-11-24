@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block titulo %}Cartera{% endblock %}
+
+{% block contenido %}
+    <!-- Espera: activos (lista de ActivoFinanciero) y total (valor total ya calculado en app.py) -->
+    <h1>Mi cartera ficticia</h1>
+
+    <div class="resumen">
+        <span class="resumen-etiqueta">Valor total</span>
+        <span class="resumen-cifra">{{ total|euros }} €</span>
+    </div>
+
+    {% if activos %}
+        <div class="tabla-contenedor">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Activo</th>
+                        <th class="num">Cantidad</th>
+                        <th class="num">Precio de compra</th>
+                        <th class="num">Valor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for activo in activos %}
+                        <tr>
+                            <td>{{ activo.get_nombre() }} <span class="simbolo">{{ activo.get_simbolo() }}</span></td>
+                            <td class="num">{{ activo.get_cantidad()|cantidad }}</td>
+                            <td class="num">{{ activo.get_precio()|euros }} €</td>
+                            <td class="num">{{ activo.calcular_valor_total()|euros }} €</td>
+                            <td>
+                                <div class="acciones">
+                                    <a href="{{ url_for('editar_activo', id_activo=activo.get_id()) }}">Editar</a>
+                                    <form action="{{ url_for('eliminar_activo', id_activo=activo.get_id()) }}" method="post"
+                                          onsubmit="return confirm('¿Eliminar la compra de {{ activo.get_nombre()|e }}?');">
+                                        <input class="eliminar" type="submit" value="Eliminar">
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="vacio">Todavía no has añadido ninguna compra.</p>
+        <a class="boton" href="{{ url_for('nueva_compra') }}">Añadir mi primera compra</a>
+    {% endif %}
+{% endblock %}

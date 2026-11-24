@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Cartera{% endblock %} · GAMBITRADE</title>
+
+  <!-- Fuentes de la guía de estilo (si no cargan, se usa la fuente del sistema) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;700&display=swap">
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- Cabecera común a todas las páginas -->
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <a href="{{ url_for('index') }}" class="marca">
+        <img class="logo" src="{{ url_for('static', filename='logo.png') }}" alt="Logotipo de GAMBITRADE">
+        <span>GAMBITRADE</span>
+      </a>
+      <nav class="navegacion">
+        <a href="{{ url_for('index') }}">Cartera</a>
+        <a href="{{ url_for('nueva_compra') }}">Nueva compra</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <!-- Mensajes flash: errores y confirmaciones enviados desde las rutas -->
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% if mensajes %}
+        <div class="mensajes">
+          {% for categoria, texto in mensajes %}
+            <div class="alerta alerta-{{ categoria }}" role="alert">{{ texto }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      Simulador educativo con dinero ficticio. No es asesoramiento financiero.
+    </div>
+  </footer>
+
+</body>
+</html>
